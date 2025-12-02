@@ -8,4 +8,3 @@ module.exports.connect = async () => {
     throw ex;
   }
 }
-
