@@ -7,7 +7,7 @@ const ProductCategoryRouter = require("./product-category.route");
 const NotificationRouter = require("./notification.route");
 const OrderRouter = require("./order.route");
 const UserRouter = require("./user.route");
-
+const DashboardRouter = require("./dashboard.route");
 module.exports = (app) => {
   const version = "/api/v1/admin";
 
@@ -23,4 +23,5 @@ module.exports = (app) => {
   app.use(version + "/notifications", NotificationRouter);
   app.use(version + "/error404", errorRouter);
   app.use(version + "/users", UserRouter);
+  app.use(version + "/dashboard", DashboardRouter);
 };
