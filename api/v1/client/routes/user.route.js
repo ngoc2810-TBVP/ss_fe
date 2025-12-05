@@ -9,4 +9,5 @@ router.post("/login", controller.login)
 router.post("/checkToken", controller.checkToken)
 router.get('/verify', authMiddleWare.requireAuth, controller.verifyUser);
 
+
 module.exports = router;
