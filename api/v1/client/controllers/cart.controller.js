@@ -25,11 +25,9 @@ module.exports = {
       const userToken = req.headers["authorization"]?.split(" ")[1];
       if (!userToken)
         return res.status(400).json({ message: "Token không hợp lệ" });
-      slug = req.params.slug;
 
-      console.log("slug ", slug);
 
-      const { product_id, quantity, slug } = req.body;
+      const { product_id, quantity } = req.body;
       console.log("req.body: ", req.body);
 
       // Kiểm tra sản phẩm tồn tại
