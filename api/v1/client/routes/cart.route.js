@@ -6,10 +6,10 @@ const cartController = require("../controllers/cart.controller");
 router.get("/", cartController.getCart);
 
 // Thêm sản phẩm vào giỏ
-router.post("/add", cartController.addToCart);
 
 // Cập nhật số lượng
 router.put("/update", cartController.updateQuantity);
+router.post("/add", cartController.addToCart);
 
 // Xóa sản phẩm khỏi giỏ
 router.delete("/remove/:product_id", cartController.removeItem);
