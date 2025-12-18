@@ -23,7 +23,7 @@ module.exports.index = async (req, res) => {
   } else {
     res.json({
       code: 400,
-      message: "Không tồn tại sản phẩm nào!",
+      message: "",
     });
   }
 };
@@ -109,4 +109,3 @@ module.exports.delete = async (req, res) => {
     });
   }
 };
-  

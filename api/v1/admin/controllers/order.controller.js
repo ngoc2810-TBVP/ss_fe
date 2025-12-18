@@ -79,12 +79,7 @@ module.exports.updateOrderStatus = async (req, res) => {
     const orderId = req.params.id;
     const { status } = req.body;
 
-    if (!status) {
-      return res.status(400).json({
-        code: 400,
-        message: "Thiếu trường status!",
-      });
-    }
+    console.log("status: ", status);
 
     const validStatuses = ["pending", "completed", "canceled"];
     if (!validStatuses.includes(status)) {
