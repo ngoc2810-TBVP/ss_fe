@@ -9,10 +9,10 @@ router.get("/", cartController.getCart);
 
 // Cập nhật số lượng
 router.put("/update", cartController.updateQuantity);
-router.post("/add", cartController.addToCart);
 
 // Xóa sản phẩm khỏi giỏ
 router.delete("/remove/:product_id", cartController.removeItem);
+router.post("/add", cartController.addToCart);
 
 // Xóa toàn bộ giỏ
 router.delete("/clear", cartController.clearCart);

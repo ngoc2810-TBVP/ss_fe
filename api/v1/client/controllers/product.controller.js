@@ -30,7 +30,7 @@ module.exports.index = async (req, res) => {
 };
 
 module.exports.detail = async (req, res) => {
-  const slug = req.params.slug;
+  const { slug } = req.params;
 
   if (!slug) {
     return res.status(400).json({
@@ -41,10 +41,10 @@ module.exports.detail = async (req, res) => {
 
   try {
     const product = await Product.findOne({
-      slug: slug,
+      slug,
       deleted: false,
       status: "active",
-    });
+    }).lean(); // ⭐ QUAN TRỌNG
 
     if (!product) {
       return res.status(404).json({
@@ -53,19 +53,17 @@ module.exports.detail = async (req, res) => {
       });
     }
 
-    // Fetch the category only if the product exists
-    const cate = await ProductCate.findById(product.product_category_id);
+    const cate = await ProductCate.findById(product.product_category_id).lean();
 
-    if (cate) {
-      product.category = cate.title;
-    } else {
-      product.category = "Chưa có danh mục";
-    }
+    const category = cate ? cate.title : "Chưa có danh mục";
 
     res.json({
       code: 200,
       message: "Lấy chi tiết sản phẩm thành công!",
-      data: { product, category: product.category },
+      data: {
+        product,
+        category,
+      },
       pageTitle: product.title,
     });
   } catch (error) {
@@ -73,7 +71,6 @@ module.exports.detail = async (req, res) => {
     res.status(500).json({
       code: 500,
       message: "Lỗi server khi lấy chi tiết sản phẩm!",
-      error: error.message,
     });
   }
 };
