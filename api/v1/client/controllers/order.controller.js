@@ -49,7 +49,7 @@ exports.checkoutCart = async (req, res) => {
       payment_method: payment_method || "COD",
       shipping_address: shipping_address || "",
       note: note || "",
-      status: payment_method === "ONLINE" ? "PENDING_PAYMENT" : "PROCESSING",
+      status: payment_method === "ONLINE" ? "Chờ thanh toán" : "Đang xử lý",
     });
 
     await order.save();
